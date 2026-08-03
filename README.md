@@ -1,3 +1,3 @@
 # remal-ai-plugins
 
-Plugins for coding agents like Claude Code.
+Remal plugins for coding agents like Claude Code.
