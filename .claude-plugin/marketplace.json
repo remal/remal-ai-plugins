@@ -1,0 +1,13 @@
+{
+  "name": "remal-ai-plugins",
+  "owner": { "name": "remal" },
+  "description": "Remal plugins for coding agents",
+  "plugins": [
+    {
+      "name": "gh-stack",
+      "source": { "source": "url", "url": "https://github.com/github/gh-stack.git" },
+      "strict": false,
+      "description": "Manage stacked branches and pull requests with the gh-stack GitHub CLI extension."
+    }
+  ]
+}
