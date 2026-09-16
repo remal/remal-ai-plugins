@@ -29,5 +29,5 @@ exec claude --print --model haiku \
   --max-budget-usd 0.25 \
   --safe-mode \
   --strict-mcp-config \
-  "Use web search at most once, then answer in at most 5 sentences. End with a 'Sources:' list of the URLs used, one URL per line. Sources are mandatory, even for a partial answer. Query: $*" \
+  "Use web search at most once, then answer in at most 10 sentences. End with a 'Sources:' list of the URLs used, one URL per line. Sources are mandatory, even for a partial answer. Query: $*" \
   --allowed-tools "WebSearch"
