@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Web search via a direct Anthropic login, bypassing the gateway config in
+# ~/.claude/settings.json. Uses haiku and a single search to keep subscription
+# usage low.
+set -euo pipefail
+
+if [[ "$#" -lt 1 ]]; then
+  echo "usage: claude-search <query>" >&2
+  exit 2
+fi
+
+# Strip gateway env inherited from the parent session's settings.json.
+unset ANTHROPIC_BASE_URL ANTHROPIC_AUTH_TOKEN ANTHROPIC_MODEL
+unset ANTHROPIC_DEFAULT_OPUS_MODEL ANTHROPIC_DEFAULT_SONNET_MODEL ANTHROPIC_DEFAULT_HAIKU_MODEL
+unset CLAUDE_CODE_BG_CLASSIFIER_MODEL CLAUDE_CODE_MAX_CONTEXT_TOKENS
+unset CLAUDE_CODE_AUTO_COMPACT_WINDOW CLAUDE_CODE_MAX_OUTPUT_TOKENS
+
+export CLAUDE_CONFIG_DIR="${HOME}/.claude-direct"
+
+# --safe-mode disables claude.ai connectors (verified in debug log: "Disabled
+# in safe mode"); without it 72 connector servers get fetched per call.
+# Prompt must come before --allowed-tools: the flag is variadic and would
+# swallow the prompt string.
+exec claude --print --model haiku \
+  --effort low \
+  --tools WebSearch \
+  --prompt-suggestions false \
+  --no-session-persistence \
+  --max-budget-usd 0.25 \
+  --safe-mode \
+  --strict-mcp-config \
+  "Use web search at most once, then answer in at most 5 sentences. End with a 'Sources:' list of the URLs used, one URL per line. Sources are mandatory, even for a partial answer. Query: $*" \
+  --allowed-tools "WebSearch"

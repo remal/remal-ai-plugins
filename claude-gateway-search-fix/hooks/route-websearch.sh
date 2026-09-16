@@ -20,7 +20,8 @@ if [[ -z "${CLAUDE_PLUGIN_ROOT:-}" ]]; then
   exit 1
 fi
 
-wrapper="${CLAUDE_PLUGIN_ROOT}/bin/claude-search"
+# Named scripts/, not bin/: the repo's template-synced .gitignore excludes bin/.
+wrapper="${CLAUDE_PLUGIN_ROOT}/scripts/claude-search"
 
 jq --null-input --arg wrapper "${wrapper}" '{
   hookSpecificOutput: {
