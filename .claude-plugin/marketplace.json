@@ -8,6 +8,12 @@
       "source": { "source": "url", "url": "https://github.com/github/gh-stack.git" },
       "strict": false,
       "description": "Manage stacked branches and pull requests with the gh-stack GitHub CLI extension."
+    },
+    {
+      "name": "claude-gateway-search-fix",
+      "source": "./claude-gateway-search-fix",
+      "strict": false,
+      "description": "Deny WebSearch under a gateway (ANTHROPIC_BASE_URL set) and redirect to the bundled claude-search fallback, which runs a real web search through a direct Anthropic login."
     }
   ]
 }

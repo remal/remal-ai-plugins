@@ -1,0 +1,18 @@
+{
+  "description": "Redirect WebSearch to the bundled claude-search fallback when a gateway is in use",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/route-websearch.sh"],
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

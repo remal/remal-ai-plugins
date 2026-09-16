@@ -1,0 +1,4 @@
+{
+  "name": "claude-gateway-search-fix",
+  "description": "Deny WebSearch under a gateway (ANTHROPIC_BASE_URL set) and redirect to the bundled claude-search fallback, which runs a real web search through a direct Anthropic login."
+}
