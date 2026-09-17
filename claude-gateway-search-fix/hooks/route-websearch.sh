@@ -27,6 +27,6 @@ jq --null-input --arg wrapper "${wrapper}" '{
   hookSpecificOutput: {
     hookEventName: "PreToolUse",
     permissionDecision: "deny",
-    permissionDecisionReason: ("WebSearch is disabled in this session: ANTHROPIC_BASE_URL routes requests to a gateway whose models cannot execute server-side web search, so calls return fabricated or empty answers. Run this with the Bash tool instead: bash " + $wrapper + " \"<query>\". It performs a real web search and returns an answer with source URLs you can then open with WebFetch.")
+    permissionDecisionReason: ("WebSearch is disabled in this session: ANTHROPIC_BASE_URL routes requests to a gateway whose models cannot execute server-side web search, so calls return fabricated or empty answers. Run this with the Bash tool instead: bash \"" + $wrapper + "\" \"<query>\". It performs a real web search and returns an answer with source URLs you can then open with WebFetch.")
   }
 }'
