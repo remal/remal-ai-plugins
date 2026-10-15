@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Interactive Claude in subscription mode, bypassing the gateway config in
+# ~/.claude/settings.json. Use it to fix claude-search failures (e.g. an
+# expired OAuth session under ~/.claude-default).
+set -euo pipefail
+
+# Strip gateway env inherited from the parent session's settings.json.
+unset ANTHROPIC_BASE_URL ANTHROPIC_AUTH_TOKEN ANTHROPIC_MODEL
+unset ANTHROPIC_DEFAULT_OPUS_MODEL ANTHROPIC_DEFAULT_SONNET_MODEL ANTHROPIC_DEFAULT_HAIKU_MODEL
+unset CLAUDE_CODE_BG_CLASSIFIER_MODEL CLAUDE_CODE_MAX_CONTEXT_TOKENS
+unset CLAUDE_CODE_AUTO_COMPACT_WINDOW CLAUDE_CODE_MAX_OUTPUT_TOKENS
+
+export CLAUDE_CONFIG_DIR="${HOME}/.claude-default"
+
+exec claude "$@"
