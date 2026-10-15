@@ -14,6 +14,9 @@ claude_default="${script_dir}/claude-default"
 
 # --safe-mode disables claude.ai connectors (verified in debug log: "Disabled
 # in safe mode"); without it 72 connector servers get fetched per call.
+# --setting-sources user skips project/local settings, which are gated on
+# workspace trust: without this every call from an untrusted workspace prints
+# "this workspace has not been trusted" to stderr.
 # Prompt must come before --allowed-tools: the flag is variadic and would
 # swallow the prompt string.
 # No exec: the exit status is checked below to attach a directive for the
@@ -22,6 +25,7 @@ set +e
 "${claude_default}" --print --model haiku \
   --effort low \
   --tools WebSearch \
+  --setting-sources user \
   --prompt-suggestions false \
   --no-session-persistence \
   --max-budget-usd 0.25 \
