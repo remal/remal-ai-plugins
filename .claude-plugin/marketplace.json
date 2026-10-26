@@ -5,7 +5,11 @@
   "plugins": [
     {
       "name": "gh-stack",
-      "source": { "source": "url", "url": "https://github.com/github/gh-stack.git" },
+      "source": {
+        "source": "git-subdir",
+        "url": "github/gh-stack",
+        "path": "skills/gh-stack"
+      },
       "strict": false,
       "description": "Manage stacked branches and pull requests with the gh-stack GitHub CLI extension."
     },
@@ -14,6 +18,15 @@
       "source": "./claude-gateway-search-fix",
       "strict": false,
       "description": "Deny WebSearch under a gateway (ANTHROPIC_BASE_URL set) and redirect to the bundled claude-search fallback, which runs a real web search through a direct Anthropic login."
+    },
+    {
+      "name": "gh-actions-lock",
+      "source": {
+        "source": "git-subdir",
+        "url": "github/gh-actions-lock",
+        "path": "skills/gh-actions-lock"
+      },
+      "description": "Lock and verify GitHub Actions workflow dependencies with gh-actions-lock."
     }
   ]
 }
